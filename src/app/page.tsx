@@ -1,8 +1,12 @@
 import { FC } from "react";
 
-const Page: FC<{ params: { username: string } }> = async ({ params }) => {
+const Page: FC<{
+  searchParams: {
+    username: string | string[] | undefined;
+  };
+}> = async ({ searchParams }) => {
   const githubUser = await fetch(
-    `https://api.github.com/users/${params.username}`
+    `https://api.github.com/users/${searchParams.username ?? "hanetsuki"}`
   ).then((res) => res.json());
 
   return (
